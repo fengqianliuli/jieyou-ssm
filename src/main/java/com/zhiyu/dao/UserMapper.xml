@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiyu.dao.UserMapper">
+    <insert id="insertUser" parameterType="user">
+        insert into MOOD.user(userName, userPassword, userGender, userPhone, userMoney, userCredit)
+        values (#{userName},#{userPassword},#{userGender},#{userPhone},#{userMoney},#{userCredit});
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        update MOOD.user
+        set userPassword = #{userPassword},userGender = #{userGender},userPhone = #{userPhone},userMoney = #{userMoney},userCredit = #{userCredit}
+        where userName = #{userName};
+    </update>
+
+    <delete id="deleteUser" parameterType="string">
+        delete from MOOD.user where userName = #{userName}
+    </delete>
+
+    <select id="getOneUserByName" parameterType="string" resultType="user">
+        select *
+        from MOOD.user where userName = #{userName};
+    </select>
+
+<!--======================-->
+
+    <insert id="insertSecret" parameterType="secret">
+        insert into MOOD.secret(stitle, scontext, stime, stype, username)
+        values (#{sTitle},#{sContext},#{sTime},#{sType},#{userName});
+    </insert>
+
+    <update id="updateSecret" parameterType="secret"></update>
+
+    <delete id="deleteSecret" parameterType="_int">
+        delete from MOOD.secret where sId = #{sId}
+    </delete>
+
+    <select id="selectSecretById" parameterType="_int" resultType="secret">
+        select *
+        from MOOD.secret where sId = #{sId};
+    </select>
+
+    <select id="selectSecret" resultType="secret">
+        select *
+        from MOOD.secret;
+    </select>
+
+    <select id="selectSecretByName" parameterType="string" resultType="secret">
+        select *
+        from MOOD.secret where userName = #{userName};
+    </select>
+
+<!--=======================-->
+
+    <insert id="insertProblem" parameterType="problem">
+        insert into MOOD.problem (ptitle, pcontext, username)
+        values (#{pTitle},#{pContext},#{userName});
+    </insert>
+
+    <update id="updateProblem" parameterType="problem"></update>
+
+    <delete id="deleteProblem" parameterType="_int">
+        delete from MOOD.problem where pId = #{pId}
+    </delete>
+
+    <select id="selectOneProblemById" parameterType="_int" resultType="problem">
+        select *
+        from MOOD.problem where pId = #{pId};
+    </select>
+
+    <select id="selectAllProblem" resultType="problem">
+        select *
+        from MOOD.problem;
+    </select>
+
+    <select id="selectAllProblemByUsername" parameterType="string" resultType="problem">
+        select *
+        from MOOD.problem where userName = #{userName};
+    </select>
+
+<!--==========================-->
+
+    <insert id="insertAnswer" parameterType="answer">
+        insert into MOOD.answer(acontext, username, pid)
+        values (#{aContext},#{userName},#{pId});
+    </insert>
+
+    <update id="updateAnswer" parameterType="answer"></update>
+
+    <delete id="deleteAnswer" parameterType="_int">
+        delete from MOOD.answer where aId = #{aId}
+    </delete>
+
+    <select id="selectAllAnswerForOneProblem" parameterType="_int" resultType="answer">
+        select *
+        from MOOD.answer where pId = #{pId};
+    </select>
+
+    <select id="selectAllAnswerForUsername" parameterType="string" resultType="answer">
+        select *
+        from MOOD.answer where userName = #{userName};
+    </select>
+<!--=============================-->
+
+    <insert id="insertRemark" parameterType="remark">
+        insert into MOOD.remark(rcontext, username, sid)
+        values (#{rContext},#{userName},#{sId});
+    </insert>
+
+    <update id="updateRemark" parameterType="remark"></update>
+
+    <delete id="deleteRemark" parameterType="_int">
+        delete from MOOD.remark where rId = #{rId}
+    </delete>
+
+    <select id="selectRemarkByUsername" parameterType="string" resultType="remark">
+        select *
+        from MOOD.remark where userName = #{userName};
+    </select>
+
+    <select id="selectRemarkBySid" parameterType="_int" resultType="remark">
+        select *
+        from MOOD.remark where sId = #{sId};
+    </select>
+
+</mapper>
