@@ -12,7 +12,7 @@
             <a class="btn btn-primary" href="#">秘密</a>
             <a class="btn btn-primary" href="#">问答</a>
             <a class="btn btn-primary" href="users/toLogin">登录</a>
-            <a class="btn btn-primary" href="#">注册</a>
+            <a class="btn btn-primary" href="users/toRegister">注册</a>
         </div>
     </div>
 </div>
