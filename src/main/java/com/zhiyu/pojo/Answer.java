@@ -12,6 +12,6 @@ import java.io.Serializable;
 public class Answer implements Serializable {
     private int aId;
     private String aContext;
-    private String username;
+    private String userName;
     private int pId;
 }

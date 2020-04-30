@@ -1,8 +1,4 @@
-<%-- 
-    Document   : SecretDetail
-    Created on : 2020-3-21, 15:23:41
-    Author     : Administrator
---%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,80 +7,122 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SecretDetail</title>
         <base href="${pageContext.request.contextPath}/">
-        <link rel="stylesheet" href="resources/css/style.css"/>
+        <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="resources/js/jquery-3.4.1.min.js"></script>
+
     </head>
     <body>
-        <h1>SecretDetail</h1>
-        <a href="/App" target="iframe_a">返回主页</a>
-        <br><br>
-        
-        <fieldset>
-            <legend>秘密详情</legend>
-            <form action="" method="">
-      
-                <label for="sid">秘密ID</label>
-                <input id="sid" type="text" name="sid" value="${Secret.sid}" readonly="true"/>
-                <br><br>
-                <label for="stitle">秘密标题</label>
-                <input id="stitle" type="text" name="stitle" value="${Secret.stitle}" readonly="true"/>
-                <br><br>
-                <label for="scontext">具体内容</label>
-                <input id="scontext" type="text" name="scontext" value="${Secret.scontext}" readonly="true"/>
-                <br><br>
-                <label for="stime">记录时间</label>
-                <input id="stime" type="text" name="stime" value="${Secret.stime}" readonly="true"/>
-                <br><br>
-                <label for="username">记录人</label>
-                <input id="username" type="text" name="username" value="${Secret.username}" readonly="true"/>
-                <br><br>
+    <div class="container">
 
-            </form>
-        </fieldset>
-                <br>
-        <fieldset>
-                <legend>所有评论</legend>
-            <table class="table table-hover table-striped">
-                <tr>
-                    <th>评论ID</th>
-                    <th>评论内容</th>
-                    <th>评论人</th>
-                </tr>
-                
-                <c:forEach items="${RemarkList}" var="r">
-                    <tr id="tr${r.rid}">
-                        
-                        <td>${r.rid}</td>
-                        <td>${r.rcontext}</td>
-                        <td>${r.username}</td>
-<!--                        <td>
-                            <input type="submit" name="Submit" value="详情" onclick="ale()" />
-                        </td>-->
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="page-header">
+                    <h1>
+                        ${Secret.STitle}
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row clealfix">
+            <div class="col-md-12 column">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <th>秘密ID</th>
+                        <th>${Secret.SId}</th>
                     </tr>
-                </c:forEach>
-            </table>
-        </fieldset>
-            <br>        
-        <fieldset>
-            <legend>评论</legend>
-            <form action="users/addRemark" method="post">
-      
-                <label for="rcontext">评论内容</label>
-                <input id="rcontext" type="text" name="rcontext"/>
-                <br><br>
-                
-                <label for="username">评论人</label>
-                <select id="username" name="username">
-                    <option selected>${user.username}</option>
-                    <option>匿名</option>
-                </select>
-                <br><br>
-                
-                <label for="sid">所属秘密ID</label>
-                <input id="sid" type="text" name="sid" value="${Secret.sid}" readonly=""/>
-                <br><br>
+                    <tr>
+                        <th>秘密标题</th>
+                        <th>${Secret.STitle}</th>
+                    </tr>
+                    <tr>
+                        <th>秘密内容</th>
+                        <th>${Secret.SContext}</th>
+                    </tr>
+                    <tr>
+                        <th>记录时间</th>
+                        <th>${Secret.STime}</th>
+                    </tr>
+                    <tr>
+                        <th>记录人</th>
+                        <th>${Secret.userName}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-                <input type="submit" value="提交评论"/> 
-            </form>
-        </fieldset>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="page-header">
+                    <h1>
+                        <small>评论列表</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row clealfix">
+            <div class="col-md-12 column">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>评论ID</th>
+                        <th>评论内容</th>
+                        <th>评论人</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:forEach items="${RemarkList}" var="r">
+                        <tr id="tr${r.RId}">
+
+                            <td>${r.RId}</td>
+                            <td>${r.RContext}</td>
+                            <td>${r.userName}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="page-header">
+                    <h1>
+                        <small>发表评论</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <form action="users/addRemark" method="post">
+
+            <div class="form-group">
+            <label for="rcontext">评论内容</label>
+            <input id="rcontext" type="text" name="rContext" class="form-control"/>
+            </div>
+            <br>
+
+            <div class="form-group">
+            <label for="username">评论人</label>
+            <select id="username" name="userName" class="form-control">
+                <option selected>${user.userName}</option>
+                <option>匿名</option>
+            </select>
+            </div>
+            <br>
+
+            <input id="sid" type="hidden" name="sId" value="${Secret.SId}"/>
+
+            <div class="form-group">
+            <input type="submit" value="提交评论" class="form-control" onclick="alert('评论已提交！')"/>
+            </div>
+        </form>
+
+    </div>
     </body>
 </html>

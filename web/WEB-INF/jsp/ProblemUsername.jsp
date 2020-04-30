@@ -49,7 +49,7 @@
                             <td>${p.PContext}</td>
                             <td>${p.userName}</td>
                             <td>
-                                <a href="users/${p.PId}/${user.userName}/selectProblemDetail">详情</a>
+                                <a href="users/selectProblemDetail/${p.PId}/${user.userName}">详情</a>
                             </td>
                         </tr>
                     </c:forEach>

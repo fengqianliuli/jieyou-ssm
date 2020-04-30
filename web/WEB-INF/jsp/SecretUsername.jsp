@@ -53,7 +53,7 @@
                             <td>${s.SType}</td>
                             <td>${s.userName}</td>
                             <td>
-                                <a href="users/${s.SId}/${user.userName}/selectSecretDetail" target="iframe_a">详情</a>
+                                <a href="users/selectSecretDetail/${s.SId}/${user.userName}" target="iframe_a">详情</a>
                             </td>
                         </tr>
                     </c:forEach>
